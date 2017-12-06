@@ -55,16 +55,16 @@ public class GEMenuEdit extends JMenu{
 			case Undo : 
 				drawingPanel.undo();
 				break;
-			case Î≥µÏÇ¨ : 
+			case ∫πªÁ : 
 				drawingPanel.copy(); 
 				break;
-			case Î∂ôÏù¥Í∏∞ : 
+			case ∫Ÿ¿Ã±‚ : 
 				drawingPanel.paste();
 				break;
-			case ÏÇ≠Ï†ú : 
+			case ªË¡¶ : 
 				drawingPanel.delete(); 
 				break;
-			case ÏûòÎùºÎÇ¥Í∏∞ : 
+			case ¿ﬂ∂Û≥ª±‚ : 
 				drawingPanel.cut(); 
 				break;
 			}
