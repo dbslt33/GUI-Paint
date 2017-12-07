@@ -28,7 +28,6 @@ import transformer.GETransformer;
 import utils.GEClipBoard;
 import utils.GECursorManager;
 import utils.GEHistory;
-import utils.GETextRotater;
 
 public class GEDrawingPanel extends JPanel{
 	
@@ -44,7 +43,6 @@ public class GEDrawingPanel extends JPanel{
 	
 	private GEClipBoard clipboard;
 	private GEHistory history;
-	private GETextRotater textRotater;
 	
 	public GEDrawingPanel() {
 		super();
@@ -53,8 +51,8 @@ public class GEDrawingPanel extends JPanel{
 		currentState = EState.Idle;
 		shapeList = new ArrayList<GEShape>();
 		drawingHandler = new MouseDrawingHandler();
-		fillColor = GEConstants.FILL_COLOR_DEFAULT;
-		lineColor = GEConstants.LINE_COLOR_DEFAULT;
+		fillColor = GEConstants.DEFAULT_FILL_COLOR;
+		lineColor = GEConstants.DEFAULT_LINE_COLOR;
 		this.addMouseListener(drawingHandler);
 		this.addMouseMotionListener(drawingHandler);
 		this.setBackground(GEConstants.BACKGROUND_COLOR);
@@ -93,7 +91,6 @@ public class GEDrawingPanel extends JPanel{
 	}
 	
 	public void setCurrentShape(GEShape currentShape) {
-//		System.out.println("setCurrentShape");
 		this.currentShape = currentShape;
 	}
 	
@@ -104,7 +101,7 @@ public class GEDrawingPanel extends JPanel{
 	private void initDraw(Point startP){
 		currentShape = currentShape.clone();
 		if(currentShape instanceof GESelect){
-			currentShape.setLineColor(GEConstants.LINE_COLOR_DEFAULT);
+			currentShape.setLineColor(GEConstants.DEFAULT_LINE_COLOR);
 		}
 		else {
 			currentShape.setFillColor(fillColor);
@@ -191,13 +188,6 @@ public class GEDrawingPanel extends JPanel{
 		repaint();
 	}
 	
-	public void freshTextRotater(){
-		if(textRotater != null){
-			remove(textRotater.getTextField());
-			textRotater = null;
-		}
-	}
-	
 	public void group(GEGroup group){
 		boolean check = false;
 		for(int i = shapeList.size(); i > 0; i--){
@@ -249,7 +239,6 @@ public class GEDrawingPanel extends JPanel{
 	
 		@Override
 		public void mousePressed(MouseEvent e){
-			freshTextRotater();
 			if(currentState == EState.Idle){
 				if(currentShape instanceof GESelect){
 					selectedShape = onShape(e.getPoint());
@@ -261,10 +250,6 @@ public class GEDrawingPanel extends JPanel{
 							transformer = new GEMover(selectedShape);
 							((GEMover)transformer).init(e.getPoint());
 							setCurrentState(EState.Moving);
-						}else if(selectedShape.getSelectedAnchor() == EAnchorTypes.RR){ //회전일때 생성.
-							transformer = new GERotater(selectedShape);
-							((GERotater)transformer).init(e.getPoint());
-							setCurrentState(EState.Rotating);
 						}else{
 							transformer  = new GEResizer(selectedShape);
 							((GEResizer)transformer).init(e.getPoint());
@@ -306,16 +291,6 @@ public class GEDrawingPanel extends JPanel{
 			}else if(currentState == EState.Moving){
 				if(((GEMover)transformer).isMoved()){
 					addHistory();
-				}
-			}else if(currentState == EState.Rotating){
-				if(((GERotater)transformer).isMoved()){
-					addHistory();
-				} else{
-					System.out.println("로테이션 클릭");
-					textRotater = new GETextRotater();
-					textRotater.init(selectedShape, instance);
-					add(textRotater.getTextField());
-					textRotater.requestFocus();
 				}
 			}
 			currentState = EState.Idle;

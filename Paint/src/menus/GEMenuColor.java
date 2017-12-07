@@ -52,19 +52,19 @@ public class GEMenuColor extends JMenu{
 	}
 	
 	public void setLineColor() {
-		Color lineColor = JColorChooser.showDialog(null, GEConstants.LINECOLOR_TITLE, null);
+		Color lineColor = JColorChooser.showDialog(null, GEConstants.TITLE_LINECOLOR, null);
 		drawingPanel.setLineColor(lineColor);
 	}
 	public void clearFillColor() {
-		drawingPanel.setFillColor(GEConstants.FILL_COLOR_DEFAULT);
+		drawingPanel.setFillColor(GEConstants.DEFAULT_FILL_COLOR);
 		
 	}
 	public void clearLineColor() {
-		drawingPanel.setLineColor(GEConstants.LINE_COLOR_DEFAULT);
+		drawingPanel.setLineColor(GEConstants.DEFAULT_LINE_COLOR);
 		
 	}
 	public void setFillColor() {
-		Color fillColor = JColorChooser.showDialog(null, GEConstants.FILLCOLOR_TITLE, null);
+		Color fillColor = JColorChooser.showDialog(null, GEConstants.TITLE_FILLCOLOR, null);
 		drawingPanel.setFillColor(fillColor);
 	}
 }
