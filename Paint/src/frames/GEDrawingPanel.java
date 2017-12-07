@@ -23,15 +23,12 @@ import transformer.GEDrawer;
 import transformer.GEGrouper;
 import transformer.GEMover;
 import transformer.GEResizer;
-import transformer.GERotater;
 import transformer.GETransformer;
 import utils.GEClipBoard;
 import utils.GECursorManager;
 import utils.GEHistory;
 
 public class GEDrawingPanel extends JPanel {
-
-	private GEDrawingPanel instance;
 
 	private GEShape currentShape, selectedShape;
 	private EState currentState;
@@ -46,7 +43,6 @@ public class GEDrawingPanel extends JPanel {
 
 	public GEDrawingPanel() {
 		super();
-		instance = this;
 		cursorManager = new GECursorManager();
 		currentState = EState.Idle;
 		shapeList = new ArrayList<GEShape>();
@@ -229,8 +225,6 @@ public class GEDrawingPanel extends JPanel {
 				transformer.transformer((Graphics2D) getGraphics(), e.getPoint());
 				if (transformer instanceof GEMover) {
 					((GEMover) transformer).setMove(true);
-				} else if (transformer instanceof GERotater) {
-					((GERotater) transformer).setMove(true);
 				}
 			}
 		}

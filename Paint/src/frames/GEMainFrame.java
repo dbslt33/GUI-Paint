@@ -8,19 +8,20 @@ import constants.GEConstants;
 import menus.GEMenuBar;
 
 public class GEMainFrame extends JFrame {
+	
+	private static GEMainFrame uniqueFrame = new GEMainFrame(GEConstants.TITLE_MAINFRAME);
+	
 	private GEDrawingPanel drawingPanel;
 	private GEMenuBar menuBar;
 	private GEToolBar toolBar;
 
-	private static GEMainFrame uniqueFrame = new GEMainFrame(GEConstants.TITLE_MAINFRAME);
-
 	private GEMainFrame(String title) {
 		super(title);
 		drawingPanel = new GEDrawingPanel();
-		add(drawingPanel);
 		menuBar = new GEMenuBar();
-		this.setJMenuBar(menuBar);
 		toolBar = new GEToolBar(GEConstants.TITLE_TOOLBAR);
+		this.add(drawingPanel);
+		this.setJMenuBar(menuBar);
 		this.add(BorderLayout.NORTH, toolBar);
 	}
 

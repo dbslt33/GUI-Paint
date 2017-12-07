@@ -27,7 +27,7 @@ public class GEDrawer extends GETransformer {
 	}
 
 	public void continueDrawing(Point p) {
-		((GEPolygon) shape).continueDraw(p);
+		((GEPolygon) shape).continueDrawing(p);
 	}
 
 }
