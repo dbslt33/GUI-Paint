@@ -116,7 +116,7 @@ public class GEGroup extends GEShape {
 			shape.draw(g2D);
 		}
 		if(this.isSelected()){
-			g2D.setColor(GEConstants.LINE_COLOR_DEFAULT);
+			g2D.setColor(GEConstants.DEFAULT_LINE_COLOR);
 			g2D.setStroke(dashedLineStroke);
 			g2D.draw(myShape);
 			g2D.setStroke(new BasicStroke());
