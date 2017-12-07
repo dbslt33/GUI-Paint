@@ -5,11 +5,11 @@ import java.awt.Point;
 
 import shapes.GEShape;
 
-public class GEMover extends GETransformer{
-	
+public class GEMover extends GETransformer {
+
 	private Point previousP;
 	private boolean moved;
-	
+
 	public GEMover(GEShape shape) {
 		super(shape);
 	}
@@ -30,12 +30,12 @@ public class GEMover extends GETransformer{
 		shape.draw(g2d);
 		previousP = p;
 	}
-	
-	public boolean isMoved(){
+
+	public boolean isMoved() {
 		return moved;
 	}
-	
-	public void setMove(boolean moved){
+
+	public void setMove(boolean moved) {
 		this.moved = moved;
 	}
 

@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
-public class GERectangle extends GEShape{
+public class GERectangle extends GEShape {
 	public GERectangle() {
 		super(new Rectangle());
 	}
@@ -14,12 +14,12 @@ public class GERectangle extends GEShape{
 	public void initDraw(Point startP) {
 		this.startP = startP;
 	}
-	
+
 	@Override
 	public void setCoordinate(Point currentP) {
-		Rectangle rectangle = (Rectangle)myShape;
-		rectangle.setBounds(startP.x, startP.y, currentP.x-startP.x, currentP.y-startP.y);
-		if(anchorList != null){
+		Rectangle rectangle = (Rectangle) myShape;
+		rectangle.setBounds(startP.x, startP.y, currentP.x - startP.x, currentP.y - startP.y);
+		if (anchorList != null) {
 			anchorList.setPosition(myShape.getBounds());
 		}
 	}
@@ -28,9 +28,9 @@ public class GERectangle extends GEShape{
 	public GEShape clone() {
 		return new GERectangle();
 	}
-	
+
 	@Override
-	public GEShape deepCopy(){
+	public GEShape deepCopy() {
 		AffineTransform affineTransform = new AffineTransform();
 		Shape newShape = affineTransform.createTransformedShape(myShape);
 		GERectangle shape = new GERectangle();

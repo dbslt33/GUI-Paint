@@ -12,26 +12,26 @@ import constants.GEConstants;
 import constants.GEConstants.EColorMenuItems;
 import frames.GEDrawingPanel;
 
-public class GEMenuColor extends JMenu{
-	
+public class GEMenuColor extends JMenu {
+
 	private GEDrawingPanel drawingPanel;
-	
+
 	public GEMenuColor(String label) {
 		super(label);
 		JMenuItem item;
-		for(EColorMenuItems btn : EColorMenuItems.values()){
+		for (EColorMenuItems btn : EColorMenuItems.values()) {
 			item = new JMenuItem(btn.toString());
 			item.addActionListener(new MenuColorHandler());
 			item.setActionCommand(btn.toString());
 			add(item);
 		}
 	}
-	
-	public void init(GEDrawingPanel drawingPanel){
+
+	public void init(GEDrawingPanel drawingPanel) {
 		this.drawingPanel = drawingPanel;
 	}
-	
-	private class MenuColorHandler implements ActionListener{
+
+	private class MenuColorHandler implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch (EColorMenuItems.valueOf(e.getActionCommand())) {
@@ -50,19 +50,22 @@ public class GEMenuColor extends JMenu{
 			}
 		}
 	}
-	
+
 	public void setLineColor() {
 		Color lineColor = JColorChooser.showDialog(null, GEConstants.TITLE_LINECOLOR, null);
 		drawingPanel.setLineColor(lineColor);
 	}
+
 	public void clearFillColor() {
 		drawingPanel.setFillColor(GEConstants.DEFAULT_FILL_COLOR);
-		
+
 	}
+
 	public void clearLineColor() {
 		drawingPanel.setLineColor(GEConstants.DEFAULT_LINE_COLOR);
-		
+
 	}
+
 	public void setFillColor() {
 		Color fillColor = JColorChooser.showDialog(null, GEConstants.TITLE_FILLCOLOR, null);
 		drawingPanel.setFillColor(fillColor);

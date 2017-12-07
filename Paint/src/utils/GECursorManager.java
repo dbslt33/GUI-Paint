@@ -4,7 +4,7 @@ import java.awt.Cursor;
 import java.util.ArrayList;
 
 public class GECursorManager extends ArrayList<Cursor> {
-	public GECursorManager(){ //NW, NN, NE, WW, EE, SW, SS, SE
+	public GECursorManager() { // NW, NN, NE, WW, EE, SW, SS, SE
 		this.add(new Cursor(Cursor.NW_RESIZE_CURSOR));
 		this.add(new Cursor(Cursor.N_RESIZE_CURSOR));
 		this.add(new Cursor(Cursor.NE_RESIZE_CURSOR));

@@ -10,14 +10,15 @@ import shapes.GEShape;
 public abstract class GETransformer {
 	protected GEShape shape;
 	protected BasicStroke dashedLineStroke;
-	
-	public GETransformer(GEShape shape){
+
+	public GETransformer(GEShape shape) {
 		this.shape = shape;
-		float dashes[] =  {GEConstants.DEFAULT_DASH_OFFSET};
-		dashedLineStroke = new BasicStroke(GEConstants.DEFAULT_DASHEDLINE_WIDTH, 
-				BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 10, dashes, 0);
+		float dashes[] = { GEConstants.DEFAULT_DASH_OFFSET };
+		dashedLineStroke = new BasicStroke(GEConstants.DEFAULT_DASHEDLINE_WIDTH, BasicStroke.CAP_ROUND,
+				BasicStroke.JOIN_ROUND, 10, dashes, 0);
 	}
-	
+
 	public abstract void init(Point p);
+
 	public abstract void transformer(Graphics2D g2D, Point p);
 }

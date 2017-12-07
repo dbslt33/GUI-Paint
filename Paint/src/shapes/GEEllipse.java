@@ -5,8 +5,8 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 
-public class GEEllipse extends GEShape{
-	
+public class GEEllipse extends GEShape {
+
 	public GEEllipse() {
 		super(new Ellipse2D.Double());
 	}
@@ -18,9 +18,9 @@ public class GEEllipse extends GEShape{
 
 	@Override
 	public void setCoordinate(Point currentP) {
-		Ellipse2D ellipse = (Ellipse2D)myShape;
-		ellipse.setFrame(startP.x, startP.y, currentP.x-startP.x, currentP.y-startP.y);
-		if(anchorList != null){
+		Ellipse2D ellipse = (Ellipse2D) myShape;
+		ellipse.setFrame(startP.x, startP.y, currentP.x - startP.x, currentP.y - startP.y);
+		if (anchorList != null) {
 			anchorList.setPosition(myShape.getBounds());
 		}
 	}
@@ -30,12 +30,12 @@ public class GEEllipse extends GEShape{
 		return new GEEllipse();
 	}
 
-	public GEShape deepCopy(){
+	public GEShape deepCopy() {
 		AffineTransform affineTransform = new AffineTransform();
 		Shape newShape = affineTransform.createTransformedShape(myShape);
 		GEEllipse shape = new GEEllipse();
 		shape.setShape(newShape);
 		shape.setGraphicsAttributes(this);
-		return shape;	
+		return shape;
 	}
 }
