@@ -6,12 +6,12 @@ import javax.swing.JMenuItem;
 import constants.GEConstants;
 import constants.GEConstants.EFileMenuItems;
 
-public class GEMenuFile extends JMenu{
+public class GEMenuFile extends JMenu {
 
-	public GEMenuFile(String label){
+	public GEMenuFile(String label) {
 		super(label);
 		JMenuItem item;
-		for(EFileMenuItems btn : EFileMenuItems.values() ){
+		for (EFileMenuItems btn : EFileMenuItems.values()) {
 			item = new JMenuItem(btn.toString());
 			add(item);
 		}

@@ -5,10 +5,11 @@ import javax.swing.JMenuBar;
 import constants.GEConstants;
 import frames.GEDrawingPanel;
 
-public class GEMenuBar extends JMenuBar{
+public class GEMenuBar extends JMenuBar {
 	private GEMenuFile fileMenu;
 	private GEMenuEdit editMenu;
 	private GEMenuColor colorMenu;
+
 	public GEMenuBar() {
 		super();
 		fileMenu = new GEMenuFile(GEConstants.TITLE_FILEMENU);
@@ -18,8 +19,8 @@ public class GEMenuBar extends JMenuBar{
 		this.add(editMenu);
 		this.add(colorMenu);
 	}
-	
-	public void init(GEDrawingPanel drawingPanel){
+
+	public void init(GEDrawingPanel drawingPanel) {
 		colorMenu.init(drawingPanel);
 		editMenu.init(drawingPanel);
 	}

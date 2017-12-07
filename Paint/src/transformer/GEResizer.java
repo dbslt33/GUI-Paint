@@ -10,7 +10,7 @@ import constants.GEConstants.EAnchorTypes;
 import shapes.GEShape;
 
 public class GEResizer extends GETransformer {
-	
+
 	private Point previousP;
 	private Point resizeAnchor;
 
@@ -39,55 +39,55 @@ public class GEResizer extends GETransformer {
 		g2d.setTransform(tempAffine);
 		previousP = p;
 	}
-	
-	public void finalize(){
+
+	public void finalize() {
 		shape.move(resizeAnchor);
 	}
-	
-	private Point getResizeAnchor(){
+
+	private Point getResizeAnchor() {
 		Point resizeAnchor = new Point();
 		Ellipse2D.Double tempAnchor = null;
-		if(shape.getSelectedAnchor() == EAnchorTypes.NW){
+		if (shape.getSelectedAnchor() == EAnchorTypes.NW) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.SE.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.NN){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.NN) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.SS.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.NE){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.NE) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.SW.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.WW){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.WW) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.EE.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.EE){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.EE) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.WW.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.SW){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.SW) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.NE.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.SS){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.SS) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.NN.ordinal());
-		} else if(shape.getSelectedAnchor() == EAnchorTypes.SE){
+		} else if (shape.getSelectedAnchor() == EAnchorTypes.SE) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.NW.ordinal());
 		}
 		resizeAnchor.setLocation(tempAnchor.x, tempAnchor.y);
 		return resizeAnchor;
 	}
-	
-	private Point2D.Double computeResizeFactor(Point previousP, Point currentP){
+
+	private Point2D.Double computeResizeFactor(Point previousP, Point currentP) {
 		double deltaW = 0;
 		double deltaH = 0;
 		if (shape.getSelectedAnchor() == EAnchorTypes.NW) {
-			deltaW =- (currentP.x - previousP.x);
-			deltaH =- (currentP.y - previousP.y);
+			deltaW = -(currentP.x - previousP.x);
+			deltaH = -(currentP.y - previousP.y);
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.NN) {
 			deltaW = 0;
-			deltaH =- (currentP.y - previousP.y);
+			deltaH = -(currentP.y - previousP.y);
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.NE) {
 			deltaW = currentP.x - previousP.x;
-			deltaH =- (currentP.y - previousP.y);
+			deltaH = -(currentP.y - previousP.y);
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.WW) {
-			deltaW =- (currentP.x - previousP.x);
+			deltaW = -(currentP.x - previousP.x);
 			deltaH = 0;
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.EE) {
 			deltaW = currentP.x - previousP.x;
 			deltaH = 0;
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.SW) {
-			deltaW =- (currentP.x - previousP.x);
+			deltaW = -(currentP.x - previousP.x);
 			deltaH = currentP.y - previousP.y;
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.SS) {
 			deltaW = 0;
@@ -96,20 +96,20 @@ public class GEResizer extends GETransformer {
 			deltaW = currentP.x - previousP.x;
 			deltaH = currentP.y - previousP.y;
 		}
-		
+
 		double currentW = shape.getBounds().getWidth();
 		double currentH = shape.getBounds().getHeight();
-		
+
 		double xFactor = 1.0;
-		if(currentW > 0.0){
+		if (currentW > 0.0) {
 			xFactor = (1.0 + deltaW / currentW);
 		}
-		
+
 		double yFactor = 1.0;
-		if(currentH > 0.0){
+		if (currentH > 0.0) {
 			yFactor = (1.0 + deltaH / currentH);
 		}
-		
+
 		return new Point2D.Double(xFactor, yFactor);
 	}
 

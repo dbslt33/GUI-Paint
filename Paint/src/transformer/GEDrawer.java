@@ -6,8 +6,8 @@ import java.awt.Point;
 import shapes.GEPolygon;
 import shapes.GEShape;
 
-public class GEDrawer extends GETransformer{
-	
+public class GEDrawer extends GETransformer {
+
 	public GEDrawer(GEShape shape) {
 		super(shape);
 	}
@@ -25,9 +25,9 @@ public class GEDrawer extends GETransformer{
 		shape.setCoordinate(p);
 		shape.draw(g2d);
 	}
-	
-	public void continueDrawing(Point p){
-		((GEPolygon)shape).continueDraw(p);
+
+	public void continueDrawing(Point p) {
+		((GEPolygon) shape).continueDraw(p);
 	}
 
 }

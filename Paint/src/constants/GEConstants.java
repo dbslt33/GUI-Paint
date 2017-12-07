@@ -44,7 +44,8 @@ public class GEConstants {
 	public static final Color DEFAULT_FILL_COLOR = Color.WHITE;
 
 	public static enum EState {
-		Idle, TwoPointsDrawing, NPointsDrawing, Moving, Resizing, Selecting}
+		Idle, TwoPointsDrawing, NPointsDrawing, Moving, Resizing, Selecting
+	}
 
 	// GEAnchorList
 	public static final int ANCHOR_W = 6;

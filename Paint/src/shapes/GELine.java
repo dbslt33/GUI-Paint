@@ -5,8 +5,8 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
-public class GELine extends GEShape{
-	
+public class GELine extends GEShape {
+
 	public GELine() {
 		super(new Line2D.Double());
 	}
@@ -18,9 +18,9 @@ public class GELine extends GEShape{
 
 	@Override
 	public void setCoordinate(Point currentP) {
-		Line2D line = (Line2D)myShape;
+		Line2D line = (Line2D) myShape;
 		line.setLine(startP.x, startP.y, currentP.x, currentP.y);
-		if(anchorList != null){
+		if (anchorList != null) {
 			anchorList.setPosition(myShape.getBounds());
 		}
 	}
@@ -30,7 +30,7 @@ public class GELine extends GEShape{
 		return new GELine();
 	}
 
-	public GEShape deepCopy(){
+	public GEShape deepCopy() {
 		AffineTransform affineTransform = new AffineTransform();
 		Shape newShape = affineTransform.createTransformedShape(myShape);
 		GELine shape = new GELine();

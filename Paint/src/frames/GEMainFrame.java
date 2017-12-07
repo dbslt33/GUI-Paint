@@ -11,10 +11,10 @@ public class GEMainFrame extends JFrame {
 	private GEDrawingPanel drawingPanel;
 	private GEMenuBar menuBar;
 	private GEToolBar toolBar;
-	
+
 	private static GEMainFrame uniqueFrame = new GEMainFrame(GEConstants.TITLE_MAINFRAME);
-	
-	private GEMainFrame(String title){
+
+	private GEMainFrame(String title) {
 		super(title);
 		drawingPanel = new GEDrawingPanel();
 		add(drawingPanel);
@@ -23,12 +23,12 @@ public class GEMainFrame extends JFrame {
 		toolBar = new GEToolBar(GEConstants.TITLE_TOOLBAR);
 		this.add(BorderLayout.NORTH, toolBar);
 	}
-	
+
 	public static GEMainFrame getInstance() {
 		return uniqueFrame;
 	}
-	
-	public void init(){
+
+	public void init() {
 		toolBar.init(drawingPanel);
 		menuBar.init(drawingPanel);
 		this.setSize(GEConstants.WIDTH_MAINFRAME, GEConstants.HEIGHT_MAINFRAME);
