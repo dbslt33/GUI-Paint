@@ -16,7 +16,7 @@ public class GEAnchorList {
 	public GEAnchorList() {
 		anchors = new ArrayList<Ellipse2D.Double>();
 		for (int i = 0; i < GEConstants.EAnchorTypes.values().length - 1; i++) {
-			anchors.add(new Ellipse2D.Double(0, 0, 0, 0));
+			anchors.add(new Ellipse2D.Double());
 		}
 	}
 

@@ -8,11 +8,10 @@ import constants.GEConstants.EFileMenuItems;
 
 public class GEMenuFile extends JMenu {
 
-	public GEMenuFile(String label) {
-		super(label);
-		JMenuItem item;
+	public GEMenuFile(String s) {
+		super(s);
 		for (EFileMenuItems btn : EFileMenuItems.values()) {
-			item = new JMenuItem(btn.toString());
+			JMenuItem item = new JMenuItem(btn.toString());
 			add(item);
 		}
 	}

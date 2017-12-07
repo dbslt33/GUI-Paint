@@ -15,14 +15,12 @@ import shapes.GEShape;
 public class GEMenuEdit extends JMenu {
 
 	private GEDrawingPanel drawingPanel;
-	private EditMenuHandler editMenuHandler;
 
-	public GEMenuEdit(String label) {
-		super(label);
-		editMenuHandler = new EditMenuHandler();
+	public GEMenuEdit(String s) {
+		super(s);
 		for (EEditMenuItems btn : EEditMenuItems.values()) {
 			JMenuItem menuItem = new JMenuItem(btn.toString());
-			menuItem.addActionListener(editMenuHandler);
+			menuItem.addActionListener(new EditMenuHandler());
 			menuItem.setActionCommand(btn.toString());
 			this.add(menuItem);
 		}
@@ -32,22 +30,14 @@ public class GEMenuEdit extends JMenu {
 		this.drawingPanel = drawingPanel;
 	}
 
-	private void unGroup() {
-		drawingPanel.unGroup();
-	}
-
-	private void group() {
-		drawingPanel.group(new GEGroup());
-	}
-
 	private class EditMenuHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			switch (EEditMenuItems.valueOf(e.getActionCommand())) {
 			case Group:
-				group();
+				drawingPanel.group(new GEGroup());
 				break;
 			case Ungroup:
-				unGroup();
+				drawingPanel.unGroup();
 				break;
 			case Redo:
 				drawingPanel.redo();
