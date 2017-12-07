@@ -15,7 +15,6 @@ public class GEHistory {
 	}
 
 	public void push(ArrayList<GEShape> shapeList) {
-		System.out.println("history push");
 
 		ArrayList<GEShape> temp = new ArrayList<GEShape>();
 		if (layerNum < history.size()) {
@@ -29,7 +28,6 @@ public class GEHistory {
 		}
 		history.add(temp);
 		layerNum++;
-		System.out.println("history size : " + history.size() + ", num : " + layerNum);
 	}
 
 	public ArrayList<GEShape> undo() {
@@ -38,7 +36,6 @@ public class GEHistory {
 			return new ArrayList<GEShape>();
 		}
 		layerNum = layerNum - 1;
-		System.out.println("history size : " + history.size() + ", num : " + layerNum);
 		if (layerNum == 0) {
 			return new ArrayList<GEShape>();
 		} else {
@@ -66,7 +63,6 @@ public class GEHistory {
 			}
 		}
 		layerNum = layerNum + 1;
-		System.out.println("history size : " + history.size() + ", num : " + layerNum);
 		ArrayList<GEShape> base = history.get(layerNum - 1);
 		for (int i = 0; i < base.size(); i++) {
 			temp.add(base.get(i).deepCopy());
