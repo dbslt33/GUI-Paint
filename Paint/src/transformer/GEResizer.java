@@ -15,8 +15,6 @@ public class GEResizer extends GETransformer {
 	private Point originP;
 	private Point resizeAnchor;
 	private int sizecheck;
-	private double w;
-	private double h;
 
 	public GEResizer(GEShape shape) {
 		super(shape);
@@ -30,11 +28,11 @@ public class GEResizer extends GETransformer {
 		shape.moveReverse(resizeAnchor);
 	}
 
-	public void init(double W, double H) {
+	public void init() {
 		sizecheck = 1;
 		this.resizeAnchor = getResizeAnchor();
 		shape.moveReverse(resizeAnchor);
-		shape.setSize(resizeAnchor, W, H);
+		shape.setSize(resizeAnchor);
 	}
 
 	@Override

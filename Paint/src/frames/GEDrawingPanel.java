@@ -40,8 +40,6 @@ public class GEDrawingPanel extends JPanel {
 	private GECursorManager cursorManager;
 	private GEClipBoard clipboard;
 	private GEHistory history;
-	private String W;
-	private String H;
 	private double w;
 	private double h;
 
@@ -308,12 +306,8 @@ public class GEDrawingPanel extends JPanel {
 			
 			if(selectedShape != null){
 				if(e.getClickCount() == 2){
-					W = JOptionPane.showInputDialog("가로값을 입력해주세요.");
-					Double w = Double.valueOf(W);
-					H = JOptionPane.showInputDialog("세로값을 입력해주세요.");
-					Double h = Double.valueOf(H);
 					transformer = new GEResizer(selectedShape);
-					((GEResizer)transformer).init(w, h);
+					((GEResizer)transformer).init();
 					((GEResizer)transformer).finalize();
 					addHistory();
 				}
