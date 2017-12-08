@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import constants.GEConstants;
@@ -37,9 +38,12 @@ public class GEDrawingPanel extends JPanel {
 	private Color fillColor, lineColor;
 	private MouseDrawingHandler drawingHandler;
 	private GECursorManager cursorManager;
-
 	private GEClipBoard clipboard;
 	private GEHistory history;
+	private String W;
+	private String H;
+	private double w;
+	private double h;
 
 	public GEDrawingPanel() {
 		super();
@@ -299,6 +303,19 @@ public class GEDrawingPanel extends JPanel {
 						setCurrentState(EState.Idle);
 						repaint();
 					}
+				}
+			}
+			
+			if(selectedShape != null){
+				if(e.getClickCount() == 2){
+					W = JOptionPane.showInputDialog("가로값을 입력해주세요.");
+					Double w = Double.valueOf(W);
+					H = JOptionPane.showInputDialog("세로값을 입력해주세요.");
+					Double h = Double.valueOf(H);
+					transformer = new GEResizer(selectedShape);
+					((GEResizer)transformer).init(w, h);
+					((GEResizer)transformer).finalize();
+					addHistory();
 				}
 			}
 		}

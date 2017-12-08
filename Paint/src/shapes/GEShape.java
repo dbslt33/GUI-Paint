@@ -15,6 +15,7 @@ import utils.GEAnchorList;
 public abstract class GEShape {
 	protected Point startP;
 	protected Shape myShape;
+	protected Shape originShape;
 	protected Color lineColor, fillColor;
 	protected boolean selected;
 	protected GEAnchorList anchorList;
@@ -23,6 +24,7 @@ public abstract class GEShape {
 
 	public GEShape(Shape shape) {
 		this.myShape = shape;
+		this.originShape = shape;
 		anchorList = null;
 		selected = false;
 		affineTransform = new AffineTransform();
@@ -144,6 +146,13 @@ public abstract class GEShape {
 	public void move(Point2D resizeAnchor) {
 		affineTransform.setToTranslation(resizeAnchor.getX(), resizeAnchor.getY());
 		myShape = affineTransform.createTransformedShape(myShape);
+	}
+	
+	public void setSize(Point2D resizeAnchor, double W, double H){
+		myShape = originShape;
+		affineTransform.setToTranslation(resizeAnchor.getX(), resizeAnchor.getY());
+		affineTransform.setToScale(W, H);
+		myShape= affineTransform.createTransformedShape(myShape);
 	}
 
 	abstract public void initDraw(Point startP);
