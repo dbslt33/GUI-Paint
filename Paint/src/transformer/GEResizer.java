@@ -12,7 +12,11 @@ import shapes.GEShape;
 public class GEResizer extends GETransformer {
 
 	private Point previousP;
+	private Point originP;
 	private Point resizeAnchor;
+	private int sizecheck;
+	private double w;
+	private double h;
 
 	public GEResizer(GEShape shape) {
 		super(shape);
@@ -24,6 +28,13 @@ public class GEResizer extends GETransformer {
 		this.previousP = p;
 		this.resizeAnchor = getResizeAnchor();
 		shape.moveReverse(resizeAnchor);
+	}
+
+	public void init(double W, double H) {
+		sizecheck = 1;
+		this.resizeAnchor = getResizeAnchor();
+		shape.moveReverse(resizeAnchor);
+		shape.setSize(resizeAnchor, W, H);
 	}
 
 	@Override
@@ -43,7 +54,6 @@ public class GEResizer extends GETransformer {
 	public void finalize() {
 		shape.move(resizeAnchor);
 	}
-
 	private Point getResizeAnchor() {
 		Point resizeAnchor = new Point();
 		Ellipse2D.Double tempAnchor = null;
@@ -64,7 +74,13 @@ public class GEResizer extends GETransformer {
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.SE) {
 			tempAnchor = shape.getAnchorList().getAnchors().get(EAnchorTypes.NW.ordinal());
 		}
-		resizeAnchor.setLocation(tempAnchor.x, tempAnchor.y);
+
+		if (sizecheck == 1) {
+			resizeAnchor.setLocation(shape.getAnchorList().getAnchors().get(EAnchorTypes.NW.ordinal()).x,
+					shape.getAnchorList().getAnchors().get(EAnchorTypes.NW.ordinal()).y);
+		} else {
+			resizeAnchor.setLocation(tempAnchor.x, tempAnchor.y);
+		}
 		return resizeAnchor;
 	}
 
@@ -93,6 +109,9 @@ public class GEResizer extends GETransformer {
 			deltaW = 0;
 			deltaH = currentP.y - previousP.y;
 		} else if (shape.getSelectedAnchor() == EAnchorTypes.SE) {
+			deltaW = currentP.x - previousP.x;
+			deltaH = currentP.y - previousP.y;
+		} else {
 			deltaW = currentP.x - previousP.x;
 			deltaH = currentP.y - previousP.y;
 		}
